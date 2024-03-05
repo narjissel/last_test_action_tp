@@ -1,0 +1,26 @@
+
+<div class="product-list">
+  <div class="product-item" *ngFor="let product of products" [ngClass]="{'out-of-stock': product.quantity === 0}">
+    <div class="product-image">
+      <img [src]="'/assets/images/' + product.productImage" [alt]="product.productTitle">
+    </div>
+    <div class="product-info">
+      <div class="product-title">{{ product.productTitle }}</div>
+      <div class="product-price">{{ product.prouctPrice }}</div>
+      <div *ngIf="product.quantity > 0" class="quantity">Quantity: {{ product.quantity }}</div>
+      <div class="product-details-button" (click)="showProductDetails(product)">Details</div>
+    </div>
+  </div>
+</div>
+
+<div class="product-details-container" *ngIf="selectedProduct">
+  <div class="product-image">
+    <img [src]="selectedProduct.productImage" alt="{{ selectedProduct.productTitle }}">
+  </div>
+  <div class="product-info">
+    <div class="product-title">{{ selectedProduct.productTitle }}</div>
+    <div class="product-price">{{ selectedProduct.prouctPrice }}</div>
+    <p class="product-description">{{ selectedProduct.productTitle }}</p>
+    <button class="add-to-cart-button" (click)="addToCart(selectedProduct)">Add to Cart</button>
+  </div>
+</div>
